@@ -1,0 +1,10 @@
+# Rewrite d'Altorouter, pour rediriger toutes les requêtes vers index.php
+RewriteEngine on
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteRule . index.php [L]
+
+# dynamically setup base URI
+RewriteCond %{REQUEST_URI}::$1 ^(/.+)/(.*)::\2$
+RewriteRule ^(.*) - [E=BASE_URI:%1]
+# exemple : 
+# $_SERVER["BASE_URI"] contient "/ressources/MVC-Empty/public"
