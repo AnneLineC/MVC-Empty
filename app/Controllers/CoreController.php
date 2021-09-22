@@ -4,6 +4,11 @@ namespace App\Controllers;
 
 class CoreController {
 
+    public function __construct()
+    {
+        
+    }
+
     /**
      * Méthode permettant d'afficher les views
      *
