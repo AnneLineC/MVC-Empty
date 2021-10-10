@@ -40,9 +40,18 @@ session_start();
 // Instanciation d'AltoRouter
 $router = new AltoRouter();
 
-// On déclare à Altorouter que notre site est placé dans des sous-répertoires
+// Si il y a un sous-répertoire
+if (array_key_exists('BASE_URI', $_SERVER)) {
+    // Alors on définit le basePath d'AltoRouter
+    $router->setBasePath($_SERVER['BASE_URI']);
+    // ainsi, nos routes correspondront à l'URL, après la suite de sous-répertoire
+}
+// sinon
+else {
+    // On donne une valeur par défaut à $_SERVER['BASE_URI'] car il est utilisé dans le CoreController
+    $_SERVER['BASE_URI'] = '/';
+}
 // Rappel : la variable $_SERVER['BASE_URI'] est créée via le .htaccess
-$router->setBasePath($_SERVER['BASE_URI']);
 
 
 /* HOMEPAGE */
